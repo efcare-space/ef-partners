@@ -65,6 +65,9 @@ const IC = {
   ban: '<path d="M4 4h16v4H4zM6 8v12h12V8M10 12h4"/>', nguoi: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 11a3 3 0 1 0 0-6M21 20c0-2-1-4-3-5"/>',
   tien: '<circle cx="12" cy="12" r="9"/><path d="M15 9c-1-1-2-1.5-3-1.5-2 0-3 1-3 2.3 0 3 6 1.5 6 4.5 0 1.3-1.3 2.2-3 2.2-1.3 0-2.5-.5-3.3-1.5M12 6v1.5M12 16.5V18"/>',
   toi: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/>', pheu: '<path d="M3 4h18l-7 8v6l-4 2v-8z"/>',
+  vali: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v4M10 14h4"/>',
+  thue: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/><path d="M8.5 14l2 2 4-4"/>',
+  vattu: '<path d="M9 2v6l-5 10a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-10V2"/><path d="M9 2h6"/><path d="M7.5 14h9"/>',
 };
 const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
 const TABS = {
@@ -143,9 +146,13 @@ const KHACH = {
     DM = DM || await F.goi('danhMuc');
     const nhom = (l) => DM.sanPham.filter((x) => x.loai === l);
     const ds = (l) => nhom(l).map((x) => `<div class="dong"><span>${E(x.ten)}</span><span class="so">${F.tien(x.gia)}</span></div>`).join('');
+    const dau = (icon, mau, nen, ten, gioiThieu) => `<div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:10px">
+      <span style="flex:none;width:48px;height:48px;border-radius:14px;background:${nen};color:${mau};padding:11px">${svg(icon)}</span>
+      <div><h2 style="margin-bottom:2px">${ten}</h2><p class="mo" style="font-size:14px">${gioiThieu}</p></div></div>`;
     nd.innerHTML = `<h1>Sản phẩm</h1><p class="mo" style="margin-bottom:12px">Giá đã gồm thuế GTGT, giao tận nhà, hướng dẫn miễn phí. Đặt mua qua cộng tác viên để được hướng dẫn tận nơi.</p>
-      <div class="the"><h2>Vali Y tế</h2>${ds('Vali trọn bộ')}</div><div class="the"><h2>Thuê Vali Gia Đình 1</h2>${ds('Thuê Vali')}<p class="mo">Đặt cọc 5.000.000đ, hoàn lại khi trả thiết bị nguyên vẹn.</p></div>
-      <div class="the"><h2>Vật tư</h2>${ds('Vật tư')}</div>`;
+      <div class="the">${dau('vali', 'var(--xanh-dam)', 'var(--xanh-nhat)', 'Vali Y tế', 'Trọn bộ máy đo tại nhà cho cả gia đình: huyết áp, đường huyết, nhiệt độ, cân nặng — gọn trong một vali, dễ mang theo.')}${ds('Vali trọn bộ')}</div>
+      <div class="the">${dau('thue', 'var(--navy)', 'var(--navy-nhat)', 'Thuê Vali Gia Đình 1', 'Dùng trước, mua sau — trả theo kỳ 3/6/9/12 tháng, không cần bỏ hẳn một khoản lớn ngay từ đầu.')}${ds('Thuê Vali')}<p class="mo">Đặt cọc 5.000.000đ, hoàn lại khi trả thiết bị nguyên vẹn.</p></div>
+      <div class="the">${dau('vattu', 'var(--vang)', 'var(--vang-nhat)', 'Vật tư', 'Que thử, kim lấy máu dùng kèm máy đo — đặt thêm khi sắp hết, cộng tác viên giao tận nhà.')}${ds('Vật tư')}</div>`;
   },
   async dongy(nd) {
     const d = await F.goi('khachTongQuan');
