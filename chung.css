@@ -1,8 +1,8 @@
-/* FaCare Life · giao diện chung. Học theo khuôn EFCommunity: chữ 17px, nút 52px, khung 560px, đầu trang nền chuyển, phân đoạn, thẻ số. Màu FaCare Life. */
+/* EF-Partners · giao diện chung. Học theo khuôn EFCommunity: chữ 17px, nút 52px, khung 560px, đầu trang nền chuyển, phân đoạn, thẻ số. Màu nhận diện EFCARE (navy + xanh dương). */
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap');
-:root{--xanh:#009574;--xanh-dam:#007a5f;--xanh-nhat:#DFF2EB;--navy:#233A77;--navy-dam:#16264F;--navy-nhat:#E6EBF6;--nen:#F3F7F5;--the:#fff;--chu:#16233A;--mo:#5C6B7E;--vien:#DCE5E1;--vien-o:#C3D2CC;--do:#B8342A;--do-nhat:#FBE1DE;--vang:#7A5410;--vang-nhat:#FCEFD2;--r:16px;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--nen:#0E1716;--the:#16211F;--chu:#E7EEEC;--mo:#9FB0AC;--vien:#2A3835;--vien-o:#3A4B47;--xanh-nhat:#123029;--navy-nhat:#1B2540;--do-nhat:#3A1F18;--vang-nhat:#3A2C10;color-scheme:dark}}
-:root[data-theme="dark"]{--nen:#0E1716;--the:#16211F;--chu:#E7EEEC;--mo:#9FB0AC;--vien:#2A3835;--vien-o:#3A4B47;--xanh-nhat:#123029;--navy-nhat:#1B2540;--do-nhat:#3A1F18;--vang-nhat:#3A2C10;color-scheme:dark}
+:root{--xanh:#1D5FD1;--xanh-dam:#154A9F;--xanh-nhat:#E8EFFB;--navy:#0B1F3F;--navy-dam:#081527;--navy-nhat:#E6ECF6;--nen:#F3F6FB;--the:#fff;--chu:#16233A;--mo:#5C6B7E;--vien:#DCE5E1;--vien-o:#C3D2CC;--do:#B8342A;--do-nhat:#FBE1DE;--vang:#7A5410;--vang-nhat:#FCEFD2;--r:16px;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--nen:#0E1716;--the:#16211F;--chu:#E7EEEC;--mo:#9FB0AC;--vien:#2A3835;--vien-o:#3A4B47;--xanh-nhat:#13203A;--navy-nhat:#1B2540;--do-nhat:#3A1F18;--vang-nhat:#3A2C10;color-scheme:dark}}
+:root[data-theme="dark"]{--nen:#0E1716;--the:#16211F;--chu:#E7EEEC;--mo:#9FB0AC;--vien:#2A3835;--vien-o:#3A4B47;--xanh-nhat:#13203A;--navy-nhat:#1B2540;--do-nhat:#3A1F18;--vang-nhat:#3A2C10;color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
 body{font-family:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--nen);color:var(--chu);font-size:17px;line-height:1.5;min-height:100dvh;-webkit-font-smoothing:antialiased}
@@ -14,9 +14,9 @@ a{color:var(--xanh);font-weight:600}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chu-logo .li{color:#8FA6E6}}
 .logo{display:flex;align-items:center;gap:10px}.logo svg{width:100%;height:100%;display:block}
 /* đầu trang: nền chuyển như EFCommunity, logo trên ô trắng */
-.dau{position:sticky;top:0;z-index:10;background:linear-gradient(160deg,var(--navy-dam),var(--navy) 55%,#1f4f7a);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:10px}
+.dau{position:sticky;top:0;z-index:10;background:linear-gradient(160deg,var(--navy-dam),var(--navy) 55%,#143572);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;align-items:center;gap:10px}
 .dau .o-logo{width:42px;height:42px;flex:0 0 42px;border-radius:12px;background:#fff;padding:5px}
-.dau .chu-logo{font-size:21px}.dau .chu-logo .fa{color:#7FE0C3}.dau .chu-logo .li{color:#fff}
+.dau .chu-logo{font-size:21px}.dau .chu-logo .fa{color:#9CC2FF}.dau .chu-logo .li{color:#fff}
 .dau .phai{margin-left:auto;display:flex;gap:6px;align-items:center}
 .dau .nut.phu{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3)}
 .vung{max-width:560px;margin:0 auto;padding:16px 16px calc(96px + env(safe-area-inset-bottom))}

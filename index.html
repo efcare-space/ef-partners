@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>FaCare Life</title>
-<meta name="theme-color" content="#009574">
+<title>EF-Partners</title>
+<meta name="theme-color" content="#0B1F3F">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon-192.png">
-<link rel="stylesheet" href="chung.css?v=0.5.0">
-<script>window.EFC_URL='https://efc-may-chu.efcare.workers.dev';window.EFL_URL='https://efl-may-chu.efcare.workers.dev'; /* DAN_URL_MAY_CHU_FACARE_LIFE */</script>
-<script src="chung.js?v=0.5.0"></script>
+<link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="chung.css?v=1.0.0">
+<script>window.EFC_URL='https://efc-may-chu.efcare.workers.dev';window.EFL_URL='https://efl-may-chu.efcare.workers.dev'; /* DAN_URL_MAY_CHU_EF_PARTNERS */</script>
+<script src="chung.js?v=1.0.0"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head><body>
 <div id="thu" class="thu an">Kho thử · dữ liệu giả</div>
@@ -15,7 +15,7 @@
 <!-- ===== Đăng nhập: 2 lựa chọn trên cùng EF-ID ===== -->
 <section id="manDangNhap" class="vung an">
   <div style="text-align:center;margin:28px 0 8px"><div class="logo" style="justify-content:center"><span id="logoLon" style="width:56px;height:56px;display:inline-block"></span></div>
-    <div class="chu-logo" style="font-size:40px;margin-top:10px"><span class="fa">FaCare</span> <span class="li">Life</span></div>
+    <div class="chu-logo" style="font-size:40px;margin-top:10px"><span class="fa">EF</span> <span class="li">Partners</span></div>
     <p class="mo" style="margin-top:8px">Theo dõi sức khỏe 365 ngày cùng cả gia đình</p></div>
   <div class="lua-chon" role="radiogroup" aria-label="Bạn là">
     <button data-vao="khach" class="on" role="radio" aria-checked="true"><span class="nhan xanh">Khách hàng</span><b>Tôi là khách hàng</b><span>Đơn hàng, gói chăm sóc, lịch hẹn</span></button>
@@ -23,7 +23,7 @@
   </div>
   <div class="the" id="khungDN">
     <h2>Đăng nhập tài khoản EFCARE</h2>
-    <p class="mo">Một tài khoản dùng chung cho EFCommunity và FaCare Life.</p>
+    <p class="mo">Một tài khoản dùng chung cho EFCommunity và EF-Partners.</p>
     <label for="dnSdt">Số điện thoại</label><input id="dnSdt" inputmode="tel" autocomplete="tel" placeholder="0912345678">
     <label for="dnPin">Mã PIN (6 số)</label><input id="dnPin" type="password" inputmode="numeric" maxlength="6" autocomplete="current-password">
     <div id="dnBao"></div>
@@ -46,7 +46,7 @@
 
 <!-- ===== Ứng dụng sau đăng nhập ===== -->
 <header class="dau an" id="dau">
-  <div class="logo"><span class="o-logo" id="logoNho"></span><span class="chu-logo"><span class="fa">FaCare</span> <span class="li">Life</span></span></div>
+  <div class="logo"><span class="o-logo" id="logoNho"></span><span class="chu-logo"><span class="fa">EF</span> <span class="li">Partners</span></span></div>
   <div class="phai"><div class="seg an" id="chuyen"><button data-kg="khach">Khách</button><button data-kg="ctv">CTV</button></div>
     <a class="nut phu nho an" id="denBS" href="bac-si.html">Bác sĩ</a><a class="nut phu nho an" id="denQT" href="quan-tri.html">Quản trị</a></div>
 </header>
@@ -111,7 +111,7 @@ const theDon = (d, xemCtv) => `<div class="the"><div class="dong" style="border:
 // ---- Không gian Khách hàng ----
 // Thông báo trên ứng dụng (GĐ0: lưu đăng ký; gửi đẩy ở GĐ2)
 async function batThongBao() {
-  if (!('serviceWorker' in navigator) || !('PushManager' in window)) throw new Error('Máy này chưa nhận được thông báo. Trên iPhone, thêm FaCare Life ra màn hình chính trước (iOS 16.4 trở lên).');
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) throw new Error('Máy này chưa nhận được thông báo. Trên iPhone, thêm EF-Partners ra màn hình chính trước (iOS 16.4 trở lên).');
   if (await Notification.requestPermission() !== 'granted') throw new Error('Anh chị chưa cho phép thông báo trong cài đặt của máy.');
   const reg = await navigator.serviceWorker.ready, b = F.VAPID.replace(/-/g, '+').replace(/_/g, '/');
   const key = Uint8Array.from(atob(b + '='.repeat((4 - b.length % 4) % 4)), (c) => c.charCodeAt(0));
@@ -129,13 +129,13 @@ const KHACH = {
     nd.innerHTML = `<h1>Chào ${E(TOI.ten)}</h1><p class="mo" style="margin-bottom:14px">Mã EFCARE của anh chị: <b>${E(TOI.efc)}</b></p>
       ${cho.length ? `<div class="the" style="border-color:var(--vang)"><h2>Chờ thanh toán</h2>${cho.map((x) => `<div class="dong"><span>${E(x.ma)}</span><span class="so">${F.tien(x.tong)}</span></div>`).join('')}
         <p class="mo" style="margin-top:8px">Chuyển khoản trong 24 giờ với nội dung là <b>mã đơn</b>. ${d.taiKhoan ? 'Tài khoản: ' + E(d.taiKhoan) : 'Cộng tác viên sẽ gửi thông tin tài khoản nhận tiền.'}</p></div>` : ''}
-      ${TOI.ctv ? '' : `<div class="the" style="border-color:var(--xanh)"><h2>Muốn cùng đồng hành?</h2><p class="mo">Trở thành cộng tác viên FaCare Life — học miễn phí, bán Vali Y tế, có thu nhập.</p>
+      ${TOI.ctv ? '' : `<div class="the" style="border-color:var(--xanh)"><h2>Muốn cùng đồng hành?</h2><p class="mo">Trở thành cộng tác viên EF-Partners — học miễn phí, bán Vali Y tế, có thu nhập.</p>
         <button class="nut rong" id="khTongCtv" style="margin-top:10px">Trở thành cộng tác viên</button></div>`}
       <div class="the"><h2>Người đồng hành</h2>${d.ctvPhuTrach ? `<div class="dong"><span>Cộng tác viên<br><b>${E(d.ctvPhuTrach.ten)}</b></span><a class="nut phu nho" href="tel:${E(d.ctvPhuTrach.sdt)}">Gọi ${E(d.ctvPhuTrach.sdt)}</a></div>` : '<p class="mo">Chưa có cộng tác viên phụ trách.</p>'}
         ${d.bacSi ? `<div class="dong"><span>Bác sĩ gia đình<br><b>${E(d.bacSi)}</b></span></div>` : '<p class="mo" style="margin-top:6px">Bác sĩ gia đình được phân công khi anh chị dùng Gói An tâm gia đình.</p>'}</div>
       ${d.lichSapToi && d.lichSapToi.length ? `<div class="the"><h2>Lịch sắp tới</h2>${d.lichSapToi.map((v) => `<div class="dong"><span>${E(v.loai)}</span><span class="mo">${F.ngay(v.han)}</span></div>`).join('')}</div>` : ''}
       <div class="the"><h2>Đơn gần đây</h2>${d.don.length ? d.don.slice(0, 3).map((x) => `<div class="dong"><span>${E(x.ma)}<br><span class="mo">${F.TT[x.trang_thai]}</span></span><span class="so">${F.tien(x.tong)}</span></div>`).join('') : '<p class="mo">Chưa có đơn.</p>'}</div>
-      <p class="mo">Chỉ số sức khỏe xem trên ứng dụng FaCare. FaCare Life không lưu thông tin y khoa.</p>`;
+      <p class="mo">Chỉ số sức khỏe xem trên ứng dụng FaCare. EF-Partners không lưu thông tin y khoa.</p>`;
     if (!TOI.ctv) $('khTongCtv').onclick = () => veDangKyCtv();
   },
   async don(nd) { const d = await F.goi('khachTongQuan'); nd.innerHTML = '<h1 style="margin-bottom:12px">Đơn hàng</h1>' + (d.don.length ? d.don.map((x) => theDon(x)).join('') : '<div class="the mo">Chưa có đơn.</div>'); },
@@ -150,9 +150,9 @@ const KHACH = {
   async dongy(nd) {
     const d = await F.goi('khachTongQuan');
     const nhom = [['Liên hệ, đơn hàng, chăm sóc', ['lien_he', 'xu_ly_don', 'cham_soc', 'chia_se_facare']], ['Nhận tin chương trình, ưu đãi', ['qb_app', 'qb_zalo', 'qb_sms', 'qb_email']]];
-    nd.innerHTML = `<h1>Dữ liệu của tôi</h1><p class="mo" style="margin-bottom:12px">Bật hoặc tắt từng mục. FaCare Life chỉ lưu thông tin hành chính (họ tên, số điện thoại, đơn hàng, lịch hẹn), không lưu thông tin y khoa.</p>
+    nd.innerHTML = `<h1>Dữ liệu của tôi</h1><p class="mo" style="margin-bottom:12px">Bật hoặc tắt từng mục. EF-Partners chỉ lưu thông tin hành chính (họ tên, số điện thoại, đơn hàng, lịch hẹn), không lưu thông tin y khoa.</p>
       ${nhom.map(([t, ds]) => `<div class="the"><h2>${t}</h2>${ds.filter((k) => d.mucDich[k]).map((k) => `<label class="o-chon" style="justify-content:space-between"><span>${E(d.mucDich[k])}</span><input type="checkbox" data-dy="${k}" ${d.dongY[k] ? 'checked' : ''}></label>`).join('')}
-        ${t.startsWith('Nhận') ? '<p class="mo" style="font-size:14px">Tối đa 2 tin mỗi tuần, không gửi từ 21:00 đến 08:00. Thông báo trên ứng dụng: trên iPhone cần thêm FaCare Life ra màn hình chính trước.</p>' : ''}</div>`).join('')}<div id="dyBao"></div>`;
+        ${t.startsWith('Nhận') ? '<p class="mo" style="font-size:14px">Tối đa 2 tin mỗi tuần, không gửi từ 21:00 đến 08:00. Thông báo trên ứng dụng: trên iPhone cần thêm EF-Partners ra màn hình chính trước.</p>' : ''}</div>`).join('')}<div id="dyBao"></div>`;
     nd.querySelectorAll('[data-dy]').forEach((c) => c.onchange = async () => {
       try {
         if (c.dataset.dy === 'qb_app') await (c.checked ? batThongBao() : tatThongBao());
@@ -179,7 +179,7 @@ function veDangKyCtv() {
   $('noiDung').innerHTML = `<h1>Trở thành cộng tác viên</h1><p class="mo" style="margin:6px 0 14px">Đăng ký xong anh chị vào học ngay, không phải chờ duyệt. Học xong và đạt bài kiểm tra thì được mở bán.</p>
     <div class="the"><label for="cTinh">Tỉnh, thành phố</label><input id="cTinh"><label for="cMail">Email (nhận thông báo)</label><input id="cMail" type="email" autocomplete="email">
     <label for="cGt">Mã người giới thiệu (nếu có)</label><input id="cGt" placeholder="EFC-000123" value="${E(new URLSearchParams(location.search).get('ctv') || '')}">
-    <label class="o-chon"><input type="checkbox" id="cDy"> Tôi đồng ý điều khoản cộng tác của FaCare Life.</label><div id="cBao"></div>
+    <label class="o-chon"><input type="checkbox" id="cDy"> Tôi đồng ý điều khoản cộng tác của EF-Partners.</label><div id="cBao"></div>
     <button class="nut rong" id="cNut">Đăng ký cộng tác viên</button><button class="nut phu rong" id="cBo" style="margin-top:8px">Để sau, vào phần khách hàng</button></div>`;
   $('cBo').onclick = () => { $('duoi').classList.remove('an'); chuyenKG('khach'); };
   $('cNut').onclick = () => lam($('cNut'), $('cBao'), async () => { await F.goi('dangKyCtv', { tinh: $('cTinh').value, email: $('cMail').value, nguoiGt: $('cGt').value, dongY: $('cDy').checked }); veCtvThanhCong(); });
@@ -202,7 +202,7 @@ document.addEventListener('click', (e) => { const b = e.target.closest('[data-se
 const gioPhut = (luc) => { const s = String(luc || ''); return F.ngay(s) + (s.length > 10 ? ' ' + s.slice(11, 16) : ''); };
 async function chep(text, nut) { try { await navigator.clipboard.writeText(text); nut.textContent = 'Đã chép'; } catch (e) { prompt('Chép nội dung này:', text); } }
 async function chiaSe(url, text, nut) {
-  if (navigator.share) { try { await navigator.share({ title: 'FaCare Life', text, url }); return; } catch (e) { if (e.name === 'AbortError') return; } }
+  if (navigator.share) { try { await navigator.share({ title: 'EF-Partners', text, url }); return; } catch (e) { if (e.name === 'AbortError') return; } }
   chep(text + '\n' + url, nut);
 }
 const nutLink = (url, text) => `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><button class="nut phu nho" data-chep="${E(url)}">Chép link</button><button class="nut nho" data-share="${E(url)}" data-text="${E(text)}">Chia sẻ</button><a class="nut phu nho" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}">Facebook</a></div>`;
@@ -234,14 +234,14 @@ async function veBanner(cv, anh, url) {
   const q = o.querySelector('canvas');
   g.fillStyle = '#fff'; g.beginPath(); g.roundRect ? g.roundRect(72, 820, 196, 196, 22) : g.rect(72, 820, 196, 196); g.fill();
   g.strokeStyle = '#DCE5E1'; g.lineWidth = 2; g.stroke(); g.drawImage(q, 86, 834, 168, 168);
-  g.fillStyle = '#233A77'; g.font = '800 30px "Be Vietnam Pro", sans-serif'; g.fillText('Quét mã để tìm hiểu', 292, 892, 370);
+  g.fillStyle = '#0B1F3F'; g.font = '800 30px "Be Vietnam Pro", sans-serif'; g.fillText('Quét mã để tìm hiểu', 292, 892, 370);
   g.fillStyle = '#5C6B7E'; g.font = '600 22px "Be Vietnam Pro", sans-serif'; g.fillText('Người giới thiệu', 292, 936, 370); g.fillStyle = '#16233A'; g.font = '700 26px "Be Vietnam Pro", sans-serif'; g.fillText(TOI.ten, 292, 972, 370);
   g.fillStyle = '#5C6B7E'; g.font = '500 20px "Be Vietnam Pro", sans-serif'; g.fillText('Mã ' + TOI.efc, 292, 1004, 370);
 }
 const BANNER = [
   ['vali', 'Vali Y tế', 'banner/vali.png', 'Nhà mình có thể tự đo huyết áp, đường huyết, cân nặng mỗi ngày và để người thân ở xa cùng theo dõi. Mình đang dùng và thấy cả nhà yên tâm hơn. Anh chị muốn tìm hiểu thì để lại thông tin ở link này nhé:'],
   ['goi', 'Gói An tâm', 'banner/goi.png', 'Gói An tâm gia đình: có người đến nhà hỗ trợ đo 2 lần mỗi tháng, bác sĩ gia đình cùng theo dõi và nhắc lịch khám. Anh chị xem thử ở đây nhé:'],
-  ['ctv', 'Cơ hội CTV', 'banner/ctv.png', 'Mình đang đồng hành chăm sóc sức khỏe cho các gia đình cùng FaCare Life, được học bài bản tại Học viện EFCARE. Ai muốn cùng làm thì tìm hiểu ở đây nhé:'],
+  ['ctv', 'Cơ hội CTV', 'banner/ctv.png', 'Mình đang đồng hành chăm sóc sức khỏe cho các gia đình cùng EF-Partners, được học bài bản tại Học viện EFCARE. Ai muốn cùng làm thì tìm hiểu ở đây nhé:'],
 ];
 const LANDING = [
   ['vali', 'Vali Y tế Gia Đình', 'Cho gia đình muốn tự đo tại nhà'],
@@ -276,7 +276,7 @@ const CTV = {
       <div class="the an" id="lForm"><h2>Thêm lead</h2><label for="lTen">Họ tên</label><input id="lTen"><label for="lSdt">Số điện thoại</label><input id="lSdt" inputmode="tel">
         <label for="lOrg">Tổ chức (nếu có)</label><input id="lOrg"><div class="hai"><div><label for="lNg">Nguồn</label><select id="lNg">${d.nguon.map((x) => `<option>${E(x)}</option>`).join('')}</select></div><div><label for="lHan">Hẹn chăm lại</label><input id="lHan" type="date" value="${E(d.homNay)}"></div></div>
         <label for="lGt">Giá trị dự kiến (đ)</label><input id="lGt" inputmode="numeric" placeholder="7894500"><label for="lGc">Ghi chú ngắn</label><input id="lGc" maxlength="120" placeholder="Quan tâm cho bố mẹ ở quê">
-        <label class="o-chon"><input type="checkbox" id="lDy"> Người này đồng ý để FaCare Life liên hệ tư vấn.</label><div id="lB"></div><button class="nut rong" id="lNut">Lưu lead</button></div>
+        <label class="o-chon"><input type="checkbox" id="lDy"> Người này đồng ý để EF-Partners liên hệ tư vấn.</label><div id="lB"></div><button class="nut rong" id="lNut">Lưu lead</button></div>
       <div class="kpis"><div class="kpi"><span>Tổng lead</span><b>${d.tong}</b></div><div class="kpi"><span>Cơ hội đang mở</span><b>${d.dangMo}</b></div>
         <div class="kpi" style="${d.quaHan ? 'border-color:var(--do)' : ''}"><span>Cần xử lý quá hạn</span><b style="${d.quaHan ? 'color:var(--do)' : ''}">${d.quaHan}</b></div><div class="kpi"><span>Doanh thu có bằng chứng</span><b style="font-size:19px">${F.tien(d.doanhThu)}</b></div></div>
       <div class="the"><h2>Luồng theo giai đoạn</h2>${Object.entries(d.giaiDoan).map(([k, t]) => `<div style="margin:8px 0"><div class="dong" style="border:0;padding:0"><span>${E(t)}</span><b class="so">${d.dem[k]}</b></div><div class="thanh-tien"><i style="width:${Math.round(d.dem[k] / max * 100)}%;${k === 'that_bai' ? 'background:var(--do)' : k === 'chuyen_doi' ? '' : 'background:var(--navy)'}"></i></div></div>`).join('')}</div>
@@ -304,7 +304,7 @@ const CTV = {
       <label for="bDc">Địa chỉ giao</label><input id="bDc">
       <div id="bDong"></div><button class="nut phu nho" id="bThem" style="margin-top:10px">+ Thêm sản phẩm</button>
       <div class="dong" style="margin-top:10px"><b>Tạm tính</b><span class="so" id="bTong">0đ</span></div>
-      <label class="o-chon"><input type="checkbox" id="bDy"> Khách đồng ý để FaCare Life liên hệ tư vấn và xử lý đơn.</label><div id="bBao"></div>
+      <label class="o-chon"><input type="checkbox" id="bDy"> Khách đồng ý để EF-Partners liên hệ tư vấn và xử lý đơn.</label><div id="bBao"></div>
       <button class="nut rong" id="bNut">Tạo đơn</button><p class="mo" style="margin-top:8px">Khách chuyển khoản thẳng vào tài khoản công ty, nội dung là mã đơn. Cộng tác viên không thu tiền, không đổi giá.</p></div>`;
     const dong = () => `<div class="hai" style="grid-template-columns:1fr 80px;margin-top:8px"><select>${ban.map((x) => `<option value="${E(x.ma)}" data-gia="${x.gia}">${E(x.ten)} · ${F.tien(x.gia)}</option>`).join('')}</select><input type="number" min="1" value="1" aria-label="Số lượng"></div>`;
     const tinh = () => { let s = 0; $('bDong').querySelectorAll('.hai').forEach((r) => { s += Number(r.querySelector('option:checked').dataset.gia) * Math.max(0, Number(r.querySelector('input').value) || 0); }); $('bTong').textContent = F.tien(s); };
@@ -320,8 +320,8 @@ const CTV = {
   async _chiaSe(el) {
     el.innerHTML = `${!moBan() ? '<div class="bao" style="background:var(--vang-nhat);color:var(--vang)">Trang giới thiệu hiện tên anh chị sau khi được mở bán. Hiện vẫn chia sẻ được; người để lại thông tin sẽ được Điều phối tiếp nhận.</div>' : ''}
       <div class="the"><h2>Trang giới thiệu của tôi</h2><p class="mo">Mỗi link gắn mã ${E(TOI.efc)}. Người xem để lại thông tin sẽ vào bảng Lead của anh chị.</p>
-        ${LANDING.map(([k, t, m]) => `<div style="padding:12px 0;border-bottom:1px solid var(--vien)"><b>${E(t)}</b><p class="mo">${E(m)}</p>${nutLink(linkGt(k), t + ' · FaCare Life')}</div>`).join('')}
-        <div style="padding:12px 0"><b>Mời tạo tài khoản, đăng ký cộng tác viên</b><p class="mo">Mở thẳng ứng dụng, điền sẵn mã người giới thiệu</p>${nutLink(linkApp(), 'Cùng đồng hành với FaCare Life')}</div></div>
+        ${LANDING.map(([k, t, m]) => `<div style="padding:12px 0;border-bottom:1px solid var(--vien)"><b>${E(t)}</b><p class="mo">${E(m)}</p>${nutLink(linkGt(k), t + ' · EF-Partners')}</div>`).join('')}
+        <div style="padding:12px 0"><b>Mời tạo tài khoản, đăng ký cộng tác viên</b><p class="mo">Mở thẳng ứng dụng, điền sẵn mã người giới thiệu</p>${nutLink(linkApp(), 'Cùng đồng hành với EF-Partners')}</div></div>
       <h2 style="margin:16px 0 8px">Banner có mã QR riêng</h2><p class="mo" style="margin-bottom:10px">Ảnh 1080×1080 cho Facebook, Zalo. Mã QR dẫn về trang giới thiệu của anh chị. Banner không ghi giá, không hứa chữa bệnh.</p>
       ${BANNER.map(([k, t, , cap], i) => `<div class="the"><div class="dong" style="border:0;padding:0 0 8px"><b>${E(t)}</b></div><canvas id="bn${i}" style="width:100%;border-radius:12px;display:block;background:var(--nen)"></canvas>
         <details style="margin:10px 0 0"><summary style="font-size:15px">Lời giới thiệu gợi ý</summary><p>${E(cap)}<br>${E(linkGt(k))}</p></details>
@@ -330,7 +330,7 @@ const CTV = {
     if (document.fonts && document.fonts.load) await Promise.all([document.fonts.load('800 30px "Be Vietnam Pro"'), document.fonts.load('600 26px "Be Vietnam Pro"')]).catch(() => {});
     for (let i = 0; i < BANNER.length; i++) { const [k, , anh] = BANNER[i]; try { await veBanner($('bn' + i), anh, linkGt(k)); } catch (e) { F.bao($('csB'), 'Chưa vẽ được banner: ' + e.message); } }
     el.querySelectorAll('[data-anh]').forEach((b) => b.onclick = () => { const i = Number(b.dataset.anh), [k, t, , cap] = BANNER[i];
-      $('bn' + i).toBlob(async (blob) => { const ten = `facare-life-${k}-${TOI.efc}.png`, file = new File([blob], ten, { type: 'image/png' });
+      $('bn' + i).toBlob(async (blob) => { const ten = `ef-partners-${k}-${TOI.efc}.png`, file = new File([blob], ten, { type: 'image/png' });
         if (navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], title: t, text: cap + '\n' + linkGt(k) }); return; } catch (e) { if (e.name === 'AbortError') return; } }
         const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = ten; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); b.textContent = 'Đã lưu ảnh'; }, 'image/png'); });
   },
@@ -381,8 +381,8 @@ const CTV = {
       <label for="mKy">Tháng</label><input id="mKy" type="month" value="${E(d.ky)}">
       <div class="kpis" style="margin-top:12px"><div class="kpi"><span>Doanh số đội trong tháng</span><b style="font-size:19px">${F.tien(d.doanhSoDoi)}</b></div><div class="kpi"><span>Đơn đã thu của đội</span><b>${d.soDonDoi}</b></div></div>
       <div class="the"><h2>Mời người cùng làm</h2><p class="mo">Người đăng ký qua link này được ghi anh chị là người giới thiệu, và hiện trong mạng lưới.</p>
-        <p style="margin-top:8px"><b>Trang tìm hiểu cơ hội</b></p>${nutLink(linkGt('ctv'), 'Cùng đồng hành với FaCare Life')}
-        <p style="margin-top:12px"><b>Đăng ký thẳng trên ứng dụng</b></p>${nutLink(linkApp(), 'Tạo tài khoản và đăng ký cộng tác viên FaCare Life')}</div>
+        <p style="margin-top:8px"><b>Trang tìm hiểu cơ hội</b></p>${nutLink(linkGt('ctv'), 'Cùng đồng hành với EF-Partners')}
+        <p style="margin-top:12px"><b>Đăng ký thẳng trên ứng dụng</b></p>${nutLink(linkApp(), 'Tạo tài khoản và đăng ký cộng tác viên EF-Partners')}</div>
       <div class="seg" style="margin:4px 0 10px;overflow-x:auto">${[['tat_ca', 'Tất cả'], ['can_kem', 'Cần kèm'], ['dang_hoc', 'Đang học'], ['hoat_dong', 'Hoạt động']].map(([k, t]) => `<button style="flex:none" data-seg="doi:${k}" class="${loc === k ? 'on' : ''}">${t}</button>`).join('')}</div>
       ${ds.map((m) => `<div class="the" style="${m.canKem.length ? 'border-color:var(--vang)' : ''}"><div class="dong" style="border:0;padding:0"><span><b>${E(m.ten)}</b><br><span class="mo" style="font-size:13px">${E(m.efc)}${m.tinh ? ' · ' + E(m.tinh) : ''} · từ ${F.ngay(m.ngayDk)}</span></span><span class="nhan ${TTM[m.trangThai] ? TTM[m.trangThai][0] : ''}">${TTM[m.trangThai] ? TTM[m.trangThai][1] : E(m.trangThai)}</span></div>
         <p class="mo" style="margin-top:4px">${m.quanHe.map((q) => q === 'gioi_thieu' ? 'Do tôi giới thiệu' : 'Tôi dẫn dắt').join(' · ')}</p>
