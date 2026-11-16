@@ -1,6 +1,6 @@
 // EF-Partners · bộ nhớ đệm có phiên bản. Đổi PHIEN_BAN khi đưa bản mới lên.
-const PHIEN_BAN = 'efp-1.0.0';
-const TEP = ['./', 'index.html', 'quan-tri.html', 'bac-si.html', 'chung.js?v=1.0.0', 'chung.css?v=1.0.0', 'manifest.webmanifest', 'icon-192.png', 'logo.png', 'cai-dat.html', 'gioi-thieu.html', 'banner/vali.png', 'banner/goi.png', 'banner/ctv.png'];
+const PHIEN_BAN = 'efp-1.1.0';
+const TEP = ['./', 'index.html', 'quan-tri.html', 'bac-si.html', 'chung.js?v=1.0.0', 'chung.css?v=1.0.0', 'manifest.webmanifest', 'icon-192.png', 'logo.png', 'sp-vali.jpg', 'cai-dat.html', 'gioi-thieu.html', 'banner/vali.png', 'banner/goi.png', 'banner/ctv.png'];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(PHIEN_BAN).then((c) => c.addAll(TEP)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== PHIEN_BAN).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', (e) => {

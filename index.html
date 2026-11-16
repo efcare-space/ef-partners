@@ -149,9 +149,10 @@ const KHACH = {
     const dau = (icon, mau, nen, ten, gioiThieu) => `<div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:10px">
       <span style="flex:none;width:48px;height:48px;border-radius:14px;background:${nen};color:${mau};padding:11px">${svg(icon)}</span>
       <div><h2 style="margin-bottom:2px">${ten}</h2><p class="mo" style="font-size:14px">${gioiThieu}</p></div></div>`;
+    const anh = `<img src="sp-vali.jpg" alt="Vali Y tế Gia Đình mở ra, đủ máy đo và vật tư" style="width:100%;height:170px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:10px">`;
     nd.innerHTML = `<h1>Sản phẩm</h1><p class="mo" style="margin-bottom:12px">Giá đã gồm thuế GTGT, giao tận nhà, hướng dẫn miễn phí. Đặt mua qua cộng tác viên để được hướng dẫn tận nơi.</p>
-      <div class="the">${dau('vali', 'var(--xanh-dam)', 'var(--xanh-nhat)', 'Vali Y tế', 'Trọn bộ máy đo tại nhà cho cả gia đình: huyết áp, đường huyết, nhiệt độ, cân nặng — gọn trong một vali, dễ mang theo.')}${ds('Vali trọn bộ')}</div>
-      <div class="the">${dau('thue', 'var(--navy)', 'var(--navy-nhat)', 'Thuê Vali Gia Đình 1', 'Dùng trước, mua sau — trả theo kỳ 3/6/9/12 tháng, không cần bỏ hẳn một khoản lớn ngay từ đầu.')}${ds('Thuê Vali')}<p class="mo">Đặt cọc 5.000.000đ, hoàn lại khi trả thiết bị nguyên vẹn.</p></div>
+      <div class="the">${anh}${dau('vali', 'var(--xanh-dam)', 'var(--xanh-nhat)', 'Vali Y tế', 'Trọn bộ máy đo tại nhà cho cả gia đình: huyết áp, đường huyết, nhiệt độ, cân nặng — gọn trong một vali, dễ mang theo.')}${ds('Vali trọn bộ')}</div>
+      <div class="the">${anh}${dau('thue', 'var(--navy)', 'var(--navy-nhat)', 'Thuê Vali Gia Đình 1', 'Dùng trước, mua sau — trả theo kỳ 3/6/9/12 tháng, không cần bỏ hẳn một khoản lớn ngay từ đầu.')}${ds('Thuê Vali')}<p class="mo">Đặt cọc 5.000.000đ, hoàn lại khi trả thiết bị nguyên vẹn.</p></div>
       <div class="the">${dau('vattu', 'var(--vang)', 'var(--vang-nhat)', 'Vật tư', 'Que thử, kim lấy máu dùng kèm máy đo — đặt thêm khi sắp hết, cộng tác viên giao tận nhà.')}${ds('Vật tư')}</div>`;
   },
   async dongy(nd) {
