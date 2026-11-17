@@ -145,15 +145,27 @@ const KHACH = {
   async mua(nd) {
     DM = DM || await F.goi('danhMuc');
     const nhom = (l) => DM.sanPham.filter((x) => x.loai === l);
-    const ds = (l) => nhom(l).map((x) => `<div class="dong"><span>${E(x.ten)}</span><span class="so">${F.tien(x.gia)}</span></div>`).join('');
+    const ds = (l) => nhom(l).map((x) => `<div class="dong"><span>${E(x.ten)}</span><span style="display:flex;align-items:center;gap:8px"><span class="so">${F.tien(x.gia)}</span><input type="number" min="0" value="0" data-sl="${E(x.ma)}" aria-label="Số lượng ${E(x.ten)}" style="width:56px;min-height:36px;padding:4px 6px;text-align:center;border:1.5px solid var(--vien-o);border-radius:10px"></span></div>`).join('');
     const dau = (icon, mau, nen, ten, gioiThieu) => `<div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:10px">
       <span style="flex:none;width:48px;height:48px;border-radius:14px;background:${nen};color:${mau};padding:11px">${svg(icon)}</span>
       <div><h2 style="margin-bottom:2px">${ten}</h2><p class="mo" style="font-size:14px">${gioiThieu}</p></div></div>`;
     const anh = `<img src="sp-vali.jpg" alt="Vali Y tế Gia Đình mở ra, đủ máy đo và vật tư" style="width:100%;height:170px;object-fit:cover;object-position:top;border-radius:12px;margin-bottom:10px">`;
-    nd.innerHTML = `<h1>Sản phẩm</h1><p class="mo" style="margin-bottom:12px">Giá đã gồm thuế GTGT, giao tận nhà, hướng dẫn miễn phí. Đặt mua qua cộng tác viên để được hướng dẫn tận nơi.</p>
-      <div class="the">${anh}${dau('vali', 'var(--xanh-dam)', 'var(--xanh-nhat)', 'Vali Y tế', 'Trọn bộ máy đo tại nhà cho cả gia đình: huyết áp, đường huyết, nhiệt độ, cân nặng — gọn trong một vali, dễ mang theo.')}${ds('Vali trọn bộ')}</div>
-      <div class="the">${anh}${dau('thue', 'var(--navy)', 'var(--navy-nhat)', 'Thuê Vali Gia Đình 1', 'Dùng trước, mua sau — trả theo kỳ 3/6/9/12 tháng, không cần bỏ hẳn một khoản lớn ngay từ đầu.')}${ds('Thuê Vali')}<p class="mo">Đặt cọc 5.000.000đ, hoàn lại khi trả thiết bị nguyên vẹn.</p></div>
-      <div class="the">${dau('vattu', 'var(--vang)', 'var(--vang-nhat)', 'Vật tư', 'Que thử, kim lấy máu dùng kèm máy đo — đặt thêm khi sắp hết, cộng tác viên giao tận nhà.')}${ds('Vật tư')}</div>`;
+    const nutMua = (k) => `<button class="nut rong" data-mua="${k}" style="margin-top:10px">Đặt mua</button><div id="muaBao-${k}" style="margin-top:8px"></div>`;
+    nd.innerHTML = `<h1>Sản phẩm</h1><p class="mo" style="margin-bottom:12px">Giá đã gồm thuế GTGT, giao tận nhà, hướng dẫn miễn phí. Chọn số lượng rồi bấm Đặt mua — chỉ đặt được khi đã có cộng tác viên phụ trách.</p>
+      <div class="the">${anh}${dau('vali', 'var(--xanh-dam)', 'var(--xanh-nhat)', 'Vali Y tế', 'Trọn bộ máy đo tại nhà cho cả gia đình: huyết áp, đường huyết, nhiệt độ, cân nặng — gọn trong một vali, dễ mang theo.')}${ds('Vali trọn bộ')}${nutMua('vali')}</div>
+      <div class="the">${anh}${dau('thue', 'var(--navy)', 'var(--navy-nhat)', 'Thuê Vali Gia Đình 1', 'Dùng trước, mua sau — trả theo kỳ 3/6/9/12 tháng, không cần bỏ hẳn một khoản lớn ngay từ đầu.')}${ds('Thuê Vali')}<p class="mo">Đặt cọc 5.000.000đ, hoàn lại khi trả thiết bị nguyên vẹn.</p>${nutMua('thue')}</div>
+      <div class="the">${dau('vattu', 'var(--vang)', 'var(--vang-nhat)', 'Vật tư', 'Que thử, kim lấy máu dùng kèm máy đo — đặt thêm khi sắp hết, cộng tác viên giao tận nhà.')}${ds('Vật tư')}${nutMua('vattu')}</div>`;
+    nd.querySelectorAll('[data-mua]').forEach((btn) => {
+      const the = btn.closest('.the'), baoEl = the.querySelector(`#muaBao-${btn.dataset.mua}`);
+      btn.onclick = () => lam(btn, baoEl, async () => {
+        const dong = [...the.querySelectorAll('[data-sl]')].map((i) => ({ ma: i.dataset.sl, sl: Number(i.value) })).filter((x) => x.sl > 0);
+        if (!dong.length) throw new Error('Chọn số lượng ít nhất một sản phẩm.');
+        const d = await F.goi('khachTuMua', { dong });
+        baoEl.innerHTML = `<div class="bao tot">Đã đặt mua, mã đơn ${E(d.ma)}, tổng ${F.tien(d.tong)}.</div><button class="nut phu nho" data-xem-don="${E(d.ma)}" style="margin-top:8px">Xem đơn này</button>`;
+        the.querySelectorAll('[data-sl]').forEach((i) => i.value = 0);
+        baoEl.querySelector('[data-xem-don]').onclick = () => { TAB = 'don'; moTab('don'); };
+      });
+    });
   },
   async dongy(nd) {
     const d = await F.goi('khachTongQuan');
