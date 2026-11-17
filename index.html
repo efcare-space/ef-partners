@@ -333,7 +333,8 @@ const CTV = {
     $('bNut').onclick = () => lam($('bNut'), $('bBao'), async () => {
       const ds = [...$('bDong').querySelectorAll('.hai')].map((r) => ({ ma: r.querySelector('select').value, sl: Number(r.querySelector('input').value) }));
       const d = await F.goi('taoDon', { ten: $('bTen').value, sdt: $('bSdt').value, diaChi: $('bDc').value, dongYLienHe: $('bDy').checked, dong: ds });
-      F.bao($('bBao'), `Đã tạo đơn ${d.ma}, tổng ${F.tien(d.tong)}. Gửi khách thông tin chuyển khoản với nội dung "${d.ma}".`, true);
+      $('bBao').innerHTML = `<div class="bao tot">Đã tạo đơn ${E(d.ma)}, tổng ${F.tien(d.tong)}. Gửi khách thông tin chuyển khoản với nội dung "${E(d.ma)}".</div><button class="nut phu nho" id="bXemDon" style="margin-top:8px">Xem đơn này</button>`;
+      $('bXemDon').onclick = () => { SUB.ban = 'khach'; moTab('ban'); };
       ['bTen', 'bSdt', 'bDc'].forEach((i) => $(i).value = ''); $('bDy').checked = false;
     });
   },
